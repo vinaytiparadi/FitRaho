@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "716425661652",
+    "project_id": "fitraho-flutterfledgings",
+    "storage_bucket": "fitraho-flutterfledgings.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:716425661652:android:7ebf8ea203bd186f36ff41",
+        "android_client_info": {
+          "package_name": "com.flutterfledgings.fit_raho"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "716425661652-8fi4ipi0pcstljdkat9r8rll685fk3ra.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAY1-wmoDmfGsUDf66xSlTvzPVt8CXtjrQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "716425661652-8fi4ipi0pcstljdkat9r8rll685fk3ra.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
