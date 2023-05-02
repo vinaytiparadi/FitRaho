@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -24,18 +25,16 @@ class FirebaseAuthMethods {
   Future<void> signInWithGoogle(BuildContext context) async {
     try {
       final GoogleSignInAccount? googleUser =
-      await GoogleSignIn(scopes: <String>["email"])
-          .signIn();
+          await GoogleSignIn(scopes: <String>["email"]).signIn();
 
       final GoogleSignInAuthentication googleAuth =
-      await googleUser!.authentication;
+          await googleUser!.authentication;
 
       final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
-      UserCredential uid =
-      await _auth.signInWithCredential(credential);
+      UserCredential uid = await _auth.signInWithCredential(credential);
       // print(uid.user?.uid);
       User user = FirebaseAuth.instance.currentUser!;
       // Navigator.pushReplacement(context, MaterialPageRoute(builder: (ctx)=>HomeScreen()));
@@ -63,6 +62,20 @@ class FirebaseAuthMethods {
           e.message!, context); // Displaying the error message
       // if an error of requires-recent-login is thrown, make sure to log
       // in user again and then delete account.
+    }
+  }
+
+  // CHECK IF USER DOCUMENT EXISTS
+  Future<bool> checkIfUserDocExists(BuildContext context) async {
+    final userSnapShot = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get();
+
+    if (!userSnapShot.exists) {
+      return false;
+    } else {
+      return true;
     }
   }
 }
