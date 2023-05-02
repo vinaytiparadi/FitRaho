@@ -64,18 +64,4 @@ class FirebaseAuthMethods {
       // in user again and then delete account.
     }
   }
-
-  // CHECK IF USER DOCUMENT EXISTS
-  Future<bool> checkIfUserDocExists(BuildContext context) async {
-    final userSnapShot = await FirebaseFirestore.instance
-        .collection('users')
-        .doc(FirebaseAuth.instance.currentUser!.uid)
-        .get();
-
-    if (!userSnapShot.exists) {
-      return false;
-    } else {
-      return true;
-    }
-  }
 }

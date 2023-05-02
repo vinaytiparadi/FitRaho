@@ -11,7 +11,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Add your details'), centerTitle: true,),
+      appBar: AppBar(
+        title: const Text('Add your details'),
+        centerTitle: true,
+      ),
       body: Column(
         children: [
           Text(' REgister screeeeeen :  add fields here later'),
