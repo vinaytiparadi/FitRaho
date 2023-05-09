@@ -9,7 +9,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
+import 'design_course/home_design_course.dart';
 import 'firebase_options.dart';
+import 'fitness_app/fitness_app_home_screen.dart';
+import 'hotel_booking/hotel_home_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -79,7 +82,7 @@ class AuthWrapper extends StatelessWidget {
                 body: Center(child: Text('Error fetching user data')));
           } else if (snapshot.hasData && snapshot.data!.exists) {
             // User document exists, show HomeScreen
-            return const HomeScreen();
+            return HomeScreen();
           } else {
             // User document doesn't exist, show RegisterScreen
             return const RegisterScreen();
