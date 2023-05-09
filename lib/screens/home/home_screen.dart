@@ -19,7 +19,7 @@ const List<HealthDataType> dataTypesAndroid = [
   // HealthDataType.SLEEP_ASLEEP,
   // HealthDataType.SLEEP_IN_BED,
 
-  // HealthDataType.WATER,
+  HealthDataType.WATER,
 ];
 
 enum AppState {
@@ -108,15 +108,65 @@ class _HomeScreenState extends State<HomeScreen> {
     // filter out duplicates
     _healthDataList = HealthFactory.removeDuplicates(_healthDataList);
 
-    // print the results
-    // _healthDataList.forEach((x) => print(x));
+    List<dynamic> _heartRateList = [];
+    List<dynamic> _bloodOxygenList = [];
+    List<dynamic> _bloodPressureDiastolicList = [];
+    List<dynamic> _bloodPressureSystolicList = [];
+    List<dynamic> _bodyTemperatureList = [];
+    // List<dynamic> _hydrationList = [];
+    double waterDrank = 0;
+
     _healthDataList.forEach((element) {
-      print('PPPPPPPPPPPPPPP');
-      if(element.unit == HealthDataUnit.BEATS_PER_MINUTE){
-        print(element);
+      if (element.unit == HealthDataUnit.BEATS_PER_MINUTE) {
+        _heartRateList.add(element);
       }
-      // print(element);
     });
+    _healthDataList.forEach((element) {
+      if (element.unit == HealthDataUnit.PERCENT) {
+        _bloodOxygenList.add(element);
+      }
+    });
+
+    _healthDataList.forEach((element) {
+      if (element.type == HealthDataType.BLOOD_PRESSURE_DIASTOLIC) {
+        _bloodPressureDiastolicList.add(element);
+      }
+    });
+    _healthDataList.forEach((element) {
+      if (element.type == HealthDataType.BLOOD_PRESSURE_SYSTOLIC) {
+        _bloodPressureSystolicList.add(element);
+      }
+    });
+    _healthDataList.forEach((element) {
+      if (element.type == HealthDataType.BODY_TEMPERATURE) {
+        _bodyTemperatureList.add(element);
+      }
+    });
+
+    _healthDataList.forEach((element) {
+      // print(element);
+      if (element.type == HealthDataType.WATER) {
+        // waterDrank += element.value as double;
+        waterDrank += double.parse(element.value.toString());
+        // print(element.value.toString());
+      }
+    });
+
+    var heartDataPointLatest = _heartRateList.last;
+    var bloodOxygenDataPointLatest = _bloodOxygenList.last;
+    var bloodPressureDiastolicDataPointLatest =
+        _bloodPressureDiastolicList.last;
+    var bloodPressureSystolicDataPointLatest = _bloodPressureSystolicList.last;
+    var bodyTemperatureDataPointLatest = _bodyTemperatureList.last;
+
+
+    print(heartDataPointLatest);
+    print(bloodOxygenDataPointLatest);
+    print(bloodPressureDiastolicDataPointLatest);
+    print(bloodPressureSystolicDataPointLatest);
+    print(bodyTemperatureDataPointLatest);
+    print('water drank: $waterDrank LITRES');
+
     // update the UI to display the results
     setState(() {
       _state = _healthDataList.isEmpty ? AppState.NO_DATA : AppState.DATA_READY;
