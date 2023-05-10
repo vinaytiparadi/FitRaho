@@ -5,6 +5,7 @@ import 'package:fit_raho/providers/firebase_auth_methods.dart';
 import 'package:fit_raho/screens/home/home_screen.dart';
 import 'package:fit_raho/screens/registration/login_screen.dart';
 import 'package:fit_raho/screens/registration/register_screen.dart';
+import 'package:fit_raho/welcome_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -48,7 +49,9 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           useMaterial3: true,
         ),
-        home: const AuthWrapper(),
+        home: WelcomeSignUp(),
+          // FitnessAppHomeScreen(),
+        // home: const AuthWrapper(),
       ),
     );
   }
