@@ -125,7 +125,7 @@ class _ChatScreenState extends State<ChatScreen> {
             icon: Icon(Icons.arrow_back_ios_new_rounded),
           ),
           title: Text(
-            'AI  ChatBot',
+            'AI Friend',
             // style: MyTheme.kAppTitle,
           ),
           actions: [

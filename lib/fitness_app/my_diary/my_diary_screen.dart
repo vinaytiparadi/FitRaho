@@ -362,7 +362,7 @@ class _MyDiaryScreenState extends State<MyDiaryScreen>
       }
     });
     authorize();
-    fetchStepData();
+    // fetchStepData();
     super.initState();
   }
 

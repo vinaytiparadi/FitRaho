@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-
 import '../../utils/hex_color.dart';
 import '../fitness_app_theme.dart';
 import '../ui_view/wave_view.dart';

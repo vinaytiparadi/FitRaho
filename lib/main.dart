@@ -19,7 +19,6 @@ import 'fitness_app/fitness_app_home_screen.dart';
 import 'hotel_booking/hotel_home_screen.dart';
 
 void main() async {
-
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
   await Firebase.initializeApp(
