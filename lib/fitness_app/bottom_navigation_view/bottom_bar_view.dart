@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:fit_raho/chat_assistant/chat_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../main.dart';
@@ -165,9 +166,11 @@ class _BottomBarViewState extends State<BottomBarView>
                           splashColor: Colors.white.withOpacity(0.1),
                           highlightColor: Colors.transparent,
                           focusColor: Colors.transparent,
-                          onTap: widget.addClick,
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (ctx)=> const ChatScreen()));
+                          },
                           child: Icon(
-                            Icons.add,
+                            Icons.chat_outlined,
                             color: FitnessAppTheme.white,
                             size: 32,
                           ),

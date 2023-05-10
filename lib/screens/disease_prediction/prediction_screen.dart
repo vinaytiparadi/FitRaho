@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import '../../utils/utility_methods.dart';
+
 Map<String, int> symptoms = {
   'itching': 0,
   'skin_rash': 1,
@@ -139,18 +140,151 @@ Map<String, int> symptoms = {
   'yellow_crust_ooze': 131,
 };
 
-List<bool> selectedSymptoms = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,false, false, false, false, false, false, false, false, false, false,false, false, false, false, false, false, false, false, false, false,false, false, false, false, false, false, false, false, false, false,false, false, false, false, false, false, false, false, false, false,false, false, false, false, false, false, false, false, false, false,false, false, false, false, false, false, false, false, false, false,false, false, false, false, false, false, false, false, false, false,false, false, false, false, false, false, false, false, false, false,false, false, false, false, false, false, false, false, false, false,false, false, false, false, false, false, false, false, false, false,false, false, false, false, false, false, false, false, false, false,false, false];
+List<bool> selectedSymptoms = [
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false
+];
 String symptomsString = "";
 
 class DiseasePredictionScreen extends StatefulWidget {
   const DiseasePredictionScreen({Key? key}) : super(key: key);
 
   @override
-  State<DiseasePredictionScreen> createState() => _DiseasePredictionScreenState();
+  State<DiseasePredictionScreen> createState() =>
+      _DiseasePredictionScreenState();
 }
 
 class _DiseasePredictionScreenState extends State<DiseasePredictionScreen> {
-
   void _updateSymptomsString() {
     String newSymptomsString = '';
     for (bool isSelected in selectedSymptoms) {
@@ -172,45 +306,57 @@ class _DiseasePredictionScreenState extends State<DiseasePredictionScreen> {
         title: Text('Disease Prediction'),
         centerTitle: true,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(height:Utils.scHeight(context)*0.2,child: Image(image: AssetImage('assets/healthcare.png'),)),
-          const SizedBox(height: 10,),
-          Text('Select Symptoms',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),),
-          const SizedBox(height: 10,),
-          Padding(
-            padding: EdgeInsets.all(10),
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: Colors.purple.shade300),
-              ),
-              child: SizedBox(
-                height: Utils.scHeight(context)*0.45,
-                child: ListView.builder(
-                  itemCount: symptoms.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    String symptom = symptoms.keys.toList()[index];
-                    int? symptomIndex = symptoms[symptom];
-                    return CheckboxListTile(
-                      title: Text(symptom),
-                      value: selectedSymptoms[symptomIndex!],
-                      onChanged: (bool? value) {
-                        setState(() {
-                          selectedSymptoms[symptomIndex] = value!;
-                        });
-                        _updateSymptomsString();
-                        print(symptomsString);
-                      },
-                    );
-                  },
-                ),
+      body: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+        SizedBox(
+            height: Utils.scHeight(context) * 0.2,
+            child: Image(
+              image: AssetImage('assets/healthcare.png'),
+            )),
+        const SizedBox(
+          height: 5,
+        ),
+        Text(
+          'Select Symptoms',
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+        ),
+        const SizedBox(
+          height: 5,
+        ),
+        Padding(
+          padding: EdgeInsets.all(10),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: Colors.purple.shade300),
+            ),
+            child: SizedBox(
+              height: Utils.scHeight(context) * 0.45,
+              child: ListView.builder(
+                itemCount: symptoms.length,
+                itemBuilder: (BuildContext context, int index) {
+                  String symptom = symptoms.keys.toList()[index];
+                  int? symptomIndex = symptoms[symptom];
+                  return CheckboxListTile(
+                    title: Text(symptom),
+                    value: selectedSymptoms[symptomIndex!],
+                    onChanged: (bool? value) {
+                      setState(() {
+                        selectedSymptoms[symptomIndex] = value!;
+                      });
+                      _updateSymptomsString();
+                      print(symptomsString);
+                    },
+                  );
+                },
               ),
             ),
           ),
-          const SizedBox(height: 20,),
-          FloatingActionButton.extended(onPressed: ()async{
+        ),
+        const SizedBox(
+          height: 0,
+        ),
+        FloatingActionButton.extended(
+          onPressed: () async {
             // String url = "http://127.0.0.1:5000/predict/";
             // url+=symptomsString;
             // url = url.toString();
@@ -228,8 +374,14 @@ class _DiseasePredictionScreenState extends State<DiseasePredictionScreen> {
               context: context,
               builder: (BuildContext context) {
                 return AlertDialog(
-                  title: const Text("Alert!", style: TextStyle(fontSize: 25),),
-                  content: const Text("We think that you might have FUNGAL INFECTION, please consult a doctor.", style: TextStyle(fontSize: 16),),
+                  title: const Text(
+                    "Alert!",
+                    style: TextStyle(fontSize: 25),
+                  ),
+                  content: const Text(
+                    "We think that you might have FUNGAL INFECTION, please consult a doctor.",
+                    style: TextStyle(fontSize: 16),
+                  ),
                   actions: [
                     TextButton(
                       child: Text("OK"),
@@ -241,9 +393,11 @@ class _DiseasePredictionScreenState extends State<DiseasePredictionScreen> {
                 );
               },
             );
-
-          }, label: Text('Predict Disease'), icon: Icon(Icons.health_and_safety_outlined),),]
-      ),
+          },
+          label: Text('Predict Disease'),
+          icon: Icon(Icons.health_and_safety_outlined),
+        ),
+      ]),
     );
   }
 }
