@@ -40,4 +40,21 @@ class Utils {
       ),
     );
   }
+
+  static OutlineInputBorder outlineEnabledBorder() {
+    return OutlineInputBorder(
+      borderRadius: BorderRadius.circular(30),
+      borderSide: BorderSide(color: Colors.black.withOpacity(0.4)),
+    );
+  }
+
+  //height
+  static double scHeight(BuildContext context) {
+    return MediaQuery.of(context).size.height;
+  }
+
+//width
+  static double scWidth(BuildContext context) {
+    return MediaQuery.of(context).size.width;
+  }
 }

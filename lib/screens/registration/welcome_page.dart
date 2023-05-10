@@ -1,13 +1,15 @@
+import 'package:fit_raho/providers/firebase_auth_methods.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class WelcomeSignUp extends StatefulWidget {
-  const WelcomeSignUp({Key? key}) : super(key: key);
+class WelcomePage extends StatefulWidget {
+  const WelcomePage({Key? key}) : super(key: key);
 
   @override
-  _WelcomeSignUpState createState() => _WelcomeSignUpState();
+  _WelcomePageState createState() => _WelcomePageState();
 }
 
-class _WelcomeSignUpState extends State<WelcomeSignUp> {
+class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +30,7 @@ class _WelcomeSignUpState extends State<WelcomeSignUp> {
                           Container(
                             width: MediaQuery.of(context).size.width,
                             child: Image(
-                              image: AssetImage('assets/images/Rectangle5.png'),
+                              image: const AssetImage('assets/images/Rectangle5.png'),
                               fit: BoxFit.fill,
                               width: MediaQuery.of(context).size.width,
                               height: MediaQuery.of(context).size.height * 0.6,
@@ -38,11 +40,11 @@ class _WelcomeSignUpState extends State<WelcomeSignUp> {
                           Container(
                             width: MediaQuery.of(context).size.width,
                             alignment: Alignment.bottomCenter,
-                            margin: EdgeInsets.only(bottom: 45),
+                            margin: const EdgeInsets.only(bottom: 45),
                             child: Container(
                               width: MediaQuery.of(context).size.width,
                               height: 165,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(0),
                                   topRight: Radius.circular(0),
@@ -65,10 +67,10 @@ class _WelcomeSignUpState extends State<WelcomeSignUp> {
                       ),
                       Container(
                         child: Positioned(
-                          bottom: 30,
+                          bottom: 6,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
+                            children: const [
                               Text(
                                 "FitRaho",
                                 textAlign: TextAlign.center,
@@ -80,7 +82,7 @@ class _WelcomeSignUpState extends State<WelcomeSignUp> {
                               SizedBox(height: 10),
                               Text(
                                 "By creating an account you get access to an \n"
-                                "unlimited number of exercises and plans",
+                                "unlimited number of exercises and plans.",
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.normal,
@@ -93,24 +95,28 @@ class _WelcomeSignUpState extends State<WelcomeSignUp> {
                     ],
                   ),
                 ),
-                GoogleButton(text: "Sign up with Google", onPressed: () => {}),
+                const SizedBox(height: 10),
                 GoogleButton(
                   text: "Sign in with Google",
-                  onPressed: () => {},
+                  onPressed: () => {
+                  context
+                      .read<FirebaseAuthMethods>()
+                      .signInWithGoogle(context)
+                  },
                 ),
                 Expanded(
                   flex: 1,
                   child: Container(
-                    margin: EdgeInsets.only(top: 15),
+                    margin: const EdgeInsets.only(top: 15),
                     alignment: Alignment.topCenter,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         TextButton(
                           onPressed: () => {},
-                          child: Text(
+                          child: const Text(
                             "Start your journey now..",
-                            style: TextStyle(color: Colors.blue),
+                            style: TextStyle(color: Colors.grey, fontSize: 17),
                           ),
                         ),
                       ],
@@ -146,19 +152,19 @@ class GoogleButton extends StatelessWidget {
         ),
         child: OutlinedButton.icon(
           icon: Image(
-            image: AssetImage("assets/images/google.png"),
+            image: const AssetImage("assets/images/google.png"),
           ),
           onPressed: onPressed,
           label: Text(
             text,
-            style: TextStyle(color: Colors.black),
+            style: const TextStyle(color: Colors.black, fontSize: 16),
           ),
           style: ButtonStyle(
-            shape: MaterialStateProperty.all(RoundedRectangleBorder(
+            shape: MaterialStateProperty.all(const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(15)),
             )),
             side: MaterialStateProperty.all(
-                BorderSide(color: Colors.black, width: 1)),
+                const BorderSide(color: Colors.black, width: 1)),
           ),
         ),
       ),

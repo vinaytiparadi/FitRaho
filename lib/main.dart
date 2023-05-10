@@ -4,9 +4,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:fit_raho/chat_assistant/chat_screen.dart';
 import 'package:fit_raho/providers/firebase_auth_methods.dart';
 import 'package:fit_raho/screens/home/home_screen.dart';
-import 'package:fit_raho/screens/registration/login_screen.dart';
 import 'package:fit_raho/screens/registration/register_screen.dart';
-import 'package:fit_raho/welcome_page.dart';
+import 'package:fit_raho/screens/registration/welcome_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -97,7 +96,7 @@ class AuthWrapper extends StatelessWidget {
         },
       );
     } else {
-      return const LoginScreen();
+      return const WelcomePage();
     }
   }
 }
