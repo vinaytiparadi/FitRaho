@@ -10,12 +10,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
+import 'ChatGPT.dart';
 import 'design_course/home_design_course.dart';
 import 'firebase_options.dart';
 import 'fitness_app/fitness_app_home_screen.dart';
 import 'hotel_booking/hotel_home_screen.dart';
 
 void main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -49,7 +51,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           useMaterial3: true,
         ),
-        home: WelcomeSignUp(),
+        home: ChatBotApp(),
           // FitnessAppHomeScreen(),
         // home: const AuthWrapper(),
       ),
