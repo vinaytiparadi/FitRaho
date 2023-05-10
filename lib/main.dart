@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:fit_raho/chat_assistant/chat_screen.dart';
 import 'package:fit_raho/providers/firebase_auth_methods.dart';
+import 'package:fit_raho/screens/disease_prediction/prediction_screen.dart';
 import 'package:fit_raho/screens/home/home_screen.dart';
 import 'package:fit_raho/screens/registration/register_screen.dart';
 import 'package:fit_raho/screens/registration/welcome_page.dart';
@@ -88,7 +89,7 @@ class AuthWrapper extends StatelessWidget {
                 body: Center(child: Text('Error fetching user data')));
           } else if (snapshot.hasData && snapshot.data!.exists) {
             // User document exists, show HomeScreen
-            return FitnessAppHomeScreen();
+            return DiseasePredictionScreen();
           } else {
             // User document doesn't exist, show RegisterScreen
             return const RegisterScreen();
