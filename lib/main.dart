@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:fit_raho/chat_assistant/chat_screen.dart';
 import 'package:fit_raho/providers/firebase_auth_methods.dart';
 import 'package:fit_raho/screens/home/home_screen.dart';
 import 'package:fit_raho/screens/registration/login_screen.dart';
@@ -8,9 +9,9 @@ import 'package:fit_raho/screens/registration/register_screen.dart';
 import 'package:fit_raho/welcome_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
-import 'ChatGPT.dart';
 import 'design_course/home_design_course.dart';
 import 'firebase_options.dart';
 import 'fitness_app/fitness_app_home_screen.dart';
@@ -19,6 +20,7 @@ import 'hotel_booking/hotel_home_screen.dart';
 void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -51,7 +53,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           useMaterial3: true,
         ),
-        home: ChatBotApp(),
+        home: AuthWrapper(),
           // FitnessAppHomeScreen(),
         // home: const AuthWrapper(),
       ),
@@ -87,7 +89,7 @@ class AuthWrapper extends StatelessWidget {
                 body: Center(child: Text('Error fetching user data')));
           } else if (snapshot.hasData && snapshot.data!.exists) {
             // User document exists, show HomeScreen
-            return HomeScreen();
+            return FitnessAppHomeScreen();
           } else {
             // User document doesn't exist, show RegisterScreen
             return const RegisterScreen();
